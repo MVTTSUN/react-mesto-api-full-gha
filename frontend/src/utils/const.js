@@ -14,4 +14,4 @@ const optionsApi = {
   token: "eadd520f-fc67-49d7-ab08-2e06185c8099",
 };
 
-export { objectConfiguration, optionsApi };
+export { objectConfiguration, optionsApi, BASE_URL };
