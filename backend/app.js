@@ -7,6 +7,7 @@ const otherRouter = require('./routes/other');
 const authRouter = require('./routes/auth');
 const authMiddleware = require('./middlewares/auth');
 const errorsMiddleware = require('./middlewares/errors');
+const corsMiddleware = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 require('dotenv').config();
 
@@ -16,10 +17,12 @@ const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
-app.use(requestLogger);
-
 app.use(express.urlencoded());
 app.use(express.json());
+
+app.use(corsMiddleware);
+
+app.use(requestLogger);
 
 app.use(authRouter);
 
