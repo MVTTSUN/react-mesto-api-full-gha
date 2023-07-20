@@ -1,10 +1,10 @@
 const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
-  'http://mesto.mvtt.nomoreparties.sbs',
-  'https://mesto.mvtt.nomoreparties.sbs',
-  'http://api.mesto.mvtt.nomoreparties.sbs',
-  'https://api.mesto.mvtt.nomoreparties.sbs',
+  'http://mesto.mvtt.nomoredomains.xyz',
+  'https://mesto.mvtt.nomoredomains.xyz',
+  'http://api.mesto.mvtt.nomoredomains.xyz',
+  'https://api.mesto.mvtt.nomoredomains.xyz',
 ];
 
 module.exports = (req, res, next) => {
