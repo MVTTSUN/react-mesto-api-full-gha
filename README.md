@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.13.176
+IP 51.250.13.176
 
 Frontend https://mesto.mvtt.nomoredomains.xyz
 
