@@ -14,7 +14,7 @@ export default class Api {
 
     return fetch(`${this._url}/cards`, {
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
       },
     }).then((res) => this._getResponseData(res));
   }
@@ -25,7 +25,7 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -41,7 +41,7 @@ export default class Api {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
       },
     }).then((res) => this._getResponseData(res));
   }
@@ -51,7 +51,7 @@ export default class Api {
 
     return fetch(`${this._url}/users/me`, {
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
       },
     }).then((res) => this._getResponseData(res));
   }
@@ -62,7 +62,7 @@ export default class Api {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -78,7 +78,7 @@ export default class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -93,7 +93,7 @@ export default class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this._getResponseData(res));
@@ -105,7 +105,7 @@ export default class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
-        authorization: token,
+        authorization: `Bearer ${token}`,
       },
     }).then((res) => this._getResponseData(res));
   }

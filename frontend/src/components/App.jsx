@@ -64,7 +64,7 @@ export default function App() {
   };
 
   const handleCardLike = (currCard) => {
-    const isLiked = currCard.likes.some((like) => like._id === currentUser._id);
+    const isLiked = currCard.likes.some((like) => like === currentUser._id);
 
     !isLiked
       ? api
@@ -72,7 +72,7 @@ export default function App() {
           .then((newCard) => {
             setCards((prevState) =>
               prevState.map((card) =>
-                card._id === currCard._id ? newCard : card
+                card._id === currCard._id ? newCard.data : card
               )
             );
           })
@@ -82,7 +82,7 @@ export default function App() {
           .then((newCard) => {
             setCards((prevState) =>
               prevState.map((card) =>
-                card._id === currCard._id ? newCard : card
+                card._id === currCard._id ? newCard.data : card
               )
             );
           })
@@ -122,8 +122,8 @@ export default function App() {
 
     api
       .updateUserInfo(user)
-      .then((data) => {
-        setCurrentUser(data);
+      .then((newUserInfo) => {
+        setCurrentUser(newUserInfo.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -135,8 +135,8 @@ export default function App() {
 
     api
       .updateUserAvatar(avatar)
-      .then((data) => {
-        setCurrentUser(data);
+      .then((newUserInfo) => {
+        setCurrentUser(newUserInfo.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -149,7 +149,7 @@ export default function App() {
     api
       .sendCard(dataCard)
       .then((card) => {
-        setCards([card, ...cards]);
+        setCards([card.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -178,7 +178,7 @@ export default function App() {
     if (loggedIn) {
       api
         .getCards()
-        .then((cards) => setCards(cards))
+        .then((cards) => setCards(cards.data))
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
@@ -187,7 +187,8 @@ export default function App() {
     if (loggedIn) {
       api
         .getUserInfo()
-        .then(({ name, about, avatar, _id }) => {
+        .then((userInfo) => {
+          const { name, about, avatar, _id } = userInfo.data;
           setCurrentUser({ name, about, avatar, _id });
         })
         .catch((err) => console.log(err));
