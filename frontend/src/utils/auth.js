@@ -47,4 +47,4 @@ const checkToken = async (token) => {
   }).then((res) => getResponseData(res, "Не удалось проверить токен"));
 };
 
-export { register, authorize, checkToken, BASE_URL };
+export { register, authorize, checkToken };

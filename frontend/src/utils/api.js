@@ -1,8 +1,7 @@
-import { optionsApi } from "./const.js";
+import { BASE_URL } from "./const.js";
 
 export default class Api {
-  constructor({ url, token }) {
-    this._token = token;
+  constructor(url) {
     this._url = url;
   }
 
@@ -11,18 +10,22 @@ export default class Api {
   }
 
   async getCards() {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/cards`, {
       headers: {
-        authorization: this._token,
+        authorization: token,
       },
     }).then((res) => this._getResponseData(res));
   }
 
   async sendCard({ name, link }) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
-        authorization: this._token,
+        authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -33,27 +36,33 @@ export default class Api {
   }
 
   async deleteCard(cardId) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: this._token,
+        authorization: token,
       },
     }).then((res) => this._getResponseData(res));
   }
 
   async getUserInfo() {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/users/me`, {
       headers: {
-        authorization: this._token,
+        authorization: token,
       },
     }).then((res) => this._getResponseData(res));
   }
 
   async updateUserInfo({ name, about }) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._token,
+        authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -64,10 +73,12 @@ export default class Api {
   }
 
   async updateUserAvatar({ avatar }) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this._token,
+        authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -77,23 +88,27 @@ export default class Api {
   }
 
   async sendLike(cardId) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
-        authorization: this._token,
+        authorization: token,
         "Content-Type": "application/json",
       },
     }).then((res) => this._getResponseData(res));
   }
 
   async deleteLike(cardId) {
+    const token = localStorage.getItem("token");
+
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
-        authorization: this._token,
+        authorization: token,
       },
     }).then((res) => this._getResponseData(res));
   }
 }
 
-export const api = new Api(optionsApi);
+export const api = new Api(BASE_URL);
